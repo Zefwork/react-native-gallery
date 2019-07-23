@@ -23,9 +23,12 @@ class App extends React.Component {
   componentDidMount() {
     var that = this;
     let items = Array.apply(null, Array(60)).map((v, i) => {
-      return { id: i, src: 'http://placehold.it/200x200?text=' + (i + 1) };
+      fetch('https://api.unsplash.com/photos/random?client_id=7bdba7cfd4bd3c6befb607e1e98f48ebf0893cef22e462dca547edb04249d4ce')
+		.then(res => res.json())
+		.then(data => {
+			that.setState({ items });
+		})
     });
-    that.setState({ items });
   }
   renderHeader() {
     //Header of the Screen
